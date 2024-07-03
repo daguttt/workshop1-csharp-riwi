@@ -106,5 +106,54 @@ Console.WriteLine();
 Console.WriteLine("10. Declarar dos variables string, concatenarlas y mostrar el resultado");
 string myStr1 = "Hola";
 string myStr2 = "Mundo";
-Console.WriteLine(myStr1 + " " + myStr2);
+string concatenationResult = myStr1 + " " + myStr2;
+Console.WriteLine(concatenationResult);
+
+/*
+  11. Declara una variable int, conviértela a double y muestra ambos valores
+*/
+int myInt2 = 9;
+// 👇 Implicit conversion: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/casting-and-type-conversions#implicit-conversions
+double myDouble = myInt2;
+Console.WriteLine($"myInt2: {myInt2} Y su tipo es: {myInt2.GetTypeCode()}");
+Console.WriteLine($"myDouble: {myDouble} Y su tipo es: {myDouble.GetTypeCode()}");
+
+/*
+  12. Escribe un programa que pida al usuario un número y muestre si es positivo, negativo o
+cero.
+*/
+Console.WriteLine();
+Console.Write("Escribe un número: ");
+int number = Convert.ToInt32(Console.ReadLine());
+if (number > 0) Console.WriteLine($"El número {number} es positivo");
+else if (number < 0) Console.WriteLine($"El número {number} es negativo");
+else Console.WriteLine("El número es 0");
+
+/*
+  13. Usa un bucle for para imprimir los números del 1 al 10
+*/
+Console.WriteLine();
+
+
+/*
+  14. Elimina los espacios en blanco al inicio y al final de un string, y formatea el string para que
+empiece con mayúscula y el resto en minúsculas.
+*/
+Console.WriteLine();
+
+/*
+  15. Escribe un programa que pida al usuario un número y muestre su tabla de multiplicar del 1
+al 10.
+*/
+Console.WriteLine();
+
+/*
+  16. Concatena dos strings y muestra la longitud de cada uno.
+*/
+Console.WriteLine();
+
+/*
+  17. Extrae una subcadena de un string y muestra la subcadena y su longitud.
+*/
+Console.WriteLine();
 
