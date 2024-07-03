@@ -156,50 +156,119 @@ mes correspondiente usando switch.
 9. Escribe un programa que pida al usuario una calificación numérica y muestre la letra
 correspondiente (A, B, C, D, F) usando if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Escribre una calificación númerica (del 0 al 10) para conocer que letra representa: ");
+// double gradeNumber = Convert.ToDouble(Console.ReadLine());
+
+// char gradeLetter = gradeNumber switch
+// {
+//   (< 10) and (>= 9) => 'A',
+//   (< 9) and (>= 8) => 'B',
+//   (< 8) and (>= 7) => 'C',
+//   (< 7) and (>= 6) => 'D',
+//   < 6 => 'F',
+//   _ => throw new Exception("Invalid grade number")
+// };
+// Console.WriteLine($"Sacaste una {gradeLetter}");
+
 
 /*
 10. Escribe un programa que pida al usuario un carácter y determine si es una vocal o una
 consonante usando switch.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Escribe un caracter para determinar si es VOCAL o CONSONANTE: ");
+// char character = Convert.ToChar(Console.ReadKey().KeyChar.ToString().ToLower());
+// string typeOfChar = character switch
+// {
+//   'a' or 'e' or 'i' or 'o' or 'u' => "Vocal",
+//   _ => "Consonante"
+// };
+// Console.WriteLine();
+// Console.WriteLine($"'{character}' es una {typeOfChar}'");
 
 /*
 11. Escribe un programa que pida al usuario dos números y muestre si son iguales o diferentes
 usando if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Introduce el número 'a': ");
+// int a = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Introduce el número 'b': ");
+// int b = Convert.ToInt32(Console.ReadLine());
+// if (a == b) Console.WriteLine("Los números son iguales");
+// else Console.WriteLine("Los números son diferentes");
 
 /*
 12. Escribe un programa que solicite al usuario que ingrese su dirección. Verifica si la dirección
 no es nula, no está vacía y no consiste sólo en espacios en blanco. Si la dirección es válida,
 muestra un mensaje de confirmación; de lo contrario, muestra un mensaje de error.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Introduce tu dirección: ");
+// var address = Console.ReadLine();
+// bool isValidAddress = !string.IsNullOrWhiteSpace(address);
+// if (isValidAddress) Console.WriteLine("La dirección es válida");
+// else Console.WriteLine("La dirección es inválida");
 
 /*
 13. Escribe un programa que pida al usuario un número y determine si es positivo, negativo o
 cero usando if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Escribe un número: ");
+// int number = Convert.ToInt32(Console.ReadLine());
+// if (number > 0) Console.WriteLine($"El número {number} es positivo");
+// else if (number < 0) Console.WriteLine($"El número {number} es negativo");
+// else Console.WriteLine("El número es 0");
 
 /*
 14. Escribe un programa que pida al usuario una letra y determine si es una vocal usando
 if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Escribe un caracter para determinar si es VOCAL o CONSONANTE: ");
+// char character = Convert.ToChar(Console.ReadKey().KeyChar.ToString().ToLower());
+// string typeOfChar;
+// if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u')
+// {
+//   typeOfChar = "Vocal";
+// }
+// else
+// {
+//   typeOfChar = "Consonante";
+// }
+// Console.WriteLine();
+// Console.WriteLine($"'{character}' es una {typeOfChar}'");
+
 
 /*
 15. Escribe un programa que pida al usuario una temperatura en grados Celsius y determine si
 es caliente (mayor a 30), templada (entre 10 y 30) o fría (menor a 10) usando if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Ingresa la temperatura en grados Celsius: ");
+// int temperature = Convert.ToInt32(Console.ReadLine());
+// string temperatureState = temperature switch
+// {
+//   > 30 => "Caliente",
+//   < 30 and > 10 => "Templada",
+//   < 10 => "Fría",
+//   _ => throw new Exception("Invalid temperature")
+// };
+// Console.WriteLine($"La temperatura es {temperatureState}");
 
 /*
 16. Escribe un programa que pida al usuario un año y determine si es un año bisiesto usando
 if-else.
 */
 Console.WriteLine();
+
+Console.Write("Ingresa un año: ");
+int year = Convert.ToInt32(Console.ReadLine());
+bool isLeapYear = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+if (isLeapYear) Console.WriteLine($"El año {year} es bisiesto");
+else Console.WriteLine($"El año {year} no es bisiesto");
 
 /*
 17. Escribe un programa que pida al usuario que ingrese un valor. Verifica si el valor ingresado
