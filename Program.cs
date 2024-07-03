@@ -123,23 +123,32 @@ Console.WriteLine($"myDouble: {myDouble} Y su tipo es: {myDouble.GetTypeCode()}"
 cero.
 */
 Console.WriteLine();
-Console.Write("Escribe un número: ");
-int number = Convert.ToInt32(Console.ReadLine());
-if (number > 0) Console.WriteLine($"El número {number} es positivo");
-else if (number < 0) Console.WriteLine($"El número {number} es negativo");
-else Console.WriteLine("El número es 0");
+// Console.Write("Escribe un número: ");
+// int number = Convert.ToInt32(Console.ReadLine());
+// if (number > 0) Console.WriteLine($"El número {number} es positivo");
+// else if (number < 0) Console.WriteLine($"El número {number} es negativo");
+// else Console.WriteLine("El número es 0");
 
 /*
   13. Usa un bucle for para imprimir los números del 1 al 10
 */
 Console.WriteLine();
-
+for (int i = 1; i <= 10; i++)
+{
+  Console.WriteLine(i);
+}
 
 /*
   14. Elimina los espacios en blanco al inicio y al final de un string, y formatea el string para que
 empiece con mayúscula y el resto en minúsculas.
 */
 Console.WriteLine();
+string myStr3 = "  esta es mi cadena  ";
+string trimmedMyStr3 = myStr3.Trim();
+// string resultMyStr3 = string.Concat(trimmedMyStr3[0].ToString().ToUpper(), trimmedMyStr3.AsSpan(1));
+// Console.WriteLine($"resultMyStr3 {resultMyStr3}");
+Console.WriteLine(trimmedMyStr3[0].ToString().ToUpper() + trimmedMyStr3.AsSpan(1).ToString());
+
 
 /*
   15. Escribe un programa que pida al usuario un número y muestre su tabla de multiplicar del 1
