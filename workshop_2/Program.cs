@@ -33,7 +33,52 @@ usando if-else.
 4. Escribe un programa que pida al usuario un día de la semana (como número del 1 al 7) y
 muestre el nombre del día correspondiente usando switch.
 */
+
 Console.WriteLine();
+Console.Write("Escribe el número de un día de la semana. Número del 1 al 7: ");
+byte dayNumber = Convert.ToByte(Console.ReadLine());
+// switch (dayNumber)
+// {
+//   case 1:
+//     Console.WriteLine("Lunes");
+//     break;
+//   case 2:
+//     Console.WriteLine("Martes");
+//     break;
+//   case 3:
+//     Console.WriteLine("Miércoles");
+//     break;
+//   case 4:
+//     Console.WriteLine("Jueves");
+//     break;
+//   case 5:
+//     Console.WriteLine("Viernes");
+//     break;
+//   case 6:
+//     Console.WriteLine("Sábado");
+//     break;
+//   case 7:
+//     Console.WriteLine("Domingo");
+//     break;
+//   default:
+//     Console.WriteLine("Hi");
+//     break;
+// }
+
+// With pattern matching expression
+string result = dayNumber switch
+{
+  1 => "Lunes",
+  2 => "Martes",
+  3 => "Miércoles",
+  4 => "Jueves",
+  5 => "Viernes",
+  6 => "Sábado",
+  7 => "Domingo",
+  _ => "Invalid day number",
+};
+
+Console.WriteLine(result);
 
 
 /*
