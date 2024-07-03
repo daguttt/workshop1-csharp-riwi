@@ -155,14 +155,29 @@ Console.WriteLine(trimmedMyStr3[0].ToString().ToUpper() + trimmedMyStr3.AsSpan(1
 al 10.
 */
 Console.WriteLine();
+Console.Write("Ingresa un número para mostrar su tabla de multiplicar hasta el 10: ");
+int numberForTimesTable = Convert.ToInt32(Console.ReadLine());
+for (int i = 0; i <= 10; i++)
+{
+  Console.WriteLine($"{numberForTimesTable} * {i} = {numberForTimesTable * i}");
+}
 
 /*
   16. Concatena dos strings y muestra la longitud de cada uno.
 */
 Console.WriteLine();
+string str1 = "Daniel", str2 = "Gutierrez";
+string concatenatedStr = string.Concat(str1, " ", str2);
+Console.WriteLine($"Longitud de str1: {str1.Length}");
+Console.WriteLine($"Longitud de str2: {str2.Length}");
+Console.Write($"Longitud de {concatenatedStr}: {concatenatedStr.Length}");
 
 /*
   17. Extrae una subcadena de un string y muestra la subcadena y su longitud.
 */
 Console.WriteLine();
+string str4 = "Mi nombre es: Daniel";
+string nickName = str4.Substring(14, 4);
+Console.WriteLine($"Subcadena nickName: {nickName}");
+
 
