@@ -262,23 +262,36 @@ es caliente (mayor a 30), templada (entre 10 y 30) o fría (menor a 10) usando i
 16. Escribe un programa que pida al usuario un año y determine si es un año bisiesto usando
 if-else.
 */
-Console.WriteLine();
+// Console.WriteLine();
 
-Console.Write("Ingresa un año: ");
-int year = Convert.ToInt32(Console.ReadLine());
-bool isLeapYear = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
-if (isLeapYear) Console.WriteLine($"El año {year} es bisiesto");
-else Console.WriteLine($"El año {year} no es bisiesto");
+// Console.Write("Ingresa un año: ");
+// int year = Convert.ToInt32(Console.ReadLine());
+// bool isLeapYear = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+// if (isLeapYear) Console.WriteLine($"El año {year} es bisiesto");
+// else Console.WriteLine($"El año {year} no es bisiesto");
 
 /*
 17. Escribe un programa que pida al usuario que ingrese un valor. Verifica si el valor ingresado
 no es nulo, no está vacío y no contiene solo espacios en blanco. Si la entrada es válida,
 muestra el valor; de lo contrario, pide al usuario que ingrese un valor válido.
 */
-Console.WriteLine();
+// Console.WriteLine();
+// Console.Write("Ingresa un valor: ");
+// var input = Console.ReadLine();
+// if (!string.IsNullOrWhiteSpace(input)) Console.WriteLine($"La entrada '{input}' es válida");
+// else Console.WriteLine("La entrada es inválida");
 
 /*
 18. Escribe un programa que pida al usuario un número del 1 al 7 y determine si es un día
 laborable o de fin de semana usando switch
 */
 Console.WriteLine();
+Console.Write("Escribe el número de un día de la semana. Número del 1 al 7: ");
+byte dayNumber = Convert.ToByte(Console.ReadLine());
+string result = dayNumber switch
+{
+  1 or 2 or 3 or 4 or 5 => "Día laborable",
+  6 or 7 => "Día de fin de semana",
+  _ => "Número de día inválido",
+};
+Console.WriteLine(result);
