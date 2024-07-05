@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Net.Http.Headers;
+﻿const int maxLineWidth = 100;
 
-const int maxLineWidth = 100;
 
 List<Dictionary<string, object>> products = [
   new Dictionary<string, object> {
@@ -102,128 +100,150 @@ static void ListProducts(List<Dictionary<string, object>> products)
   }
 }
 
-static void Menu(ref List<Dictionary<string, object>> products)
+static void AddProductOption(List<Dictionary<string, object>> products)
 {
-  bool isMenuOpened = true;
-  while (isMenuOpened)
-  {
-    string inventoryMenuMessage = GenerateHeader("INVENTARIO");
-    string menuItemsMessage =
-@$"1. Agregar producto
-2. Modificar producto
-3. Eliminar producto
-4. Listar productos
-5. Salir
-{new string('-', maxLineWidth)}";
-    Console.WriteLine(inventoryMenuMessage);
-    Console.WriteLine(menuItemsMessage);
-    double option = GetIntInput("INGRESE OPCIÓN: ");
-    Console.Clear();
+  string addProductMessage = GenerateHeader("AGREGAR PRODUCTOS");
+  Console.WriteLine(addProductMessage);
+  string name = GetStringInput("Ingrese nombre del producto: ");
+  double price = GetDoubleInput("Ingrese valor por unidad: ");
+  int stock = GetIntInput("Ingrese cantidad de unidades: ");
 
-    string productHeaderLineSeparator = new('-', maxLineWidth);
-    switch (option)
-    {
-      case 1:
-        string addProductMessage = GenerateHeader("AGREGAR PRODUCTOS");
-        Console.WriteLine(addProductMessage);
-        string name = GetStringInput("Ingrese nombre del producto: ");
-        double price = GetDoubleInput("Ingrese valor por unidad: ");
-        int stock = GetIntInput("Ingrese cantidad de unidades: ");
-
-        Dictionary<string, object> newProduct = new() {
+  Dictionary<string, object> newProduct = new() {
             {"name", name},
             {"price", price},
             {"stock", stock}
           };
 
-        products.Add(newProduct);
-        Console.WriteLine("");
-        Console.WriteLine("¡Producto agregado correctamente!");
-        Console.WriteLine("");
+  products.Add(newProduct);
+  Console.WriteLine("");
+  Console.WriteLine("¡Producto agregado correctamente!");
+  Console.WriteLine("");
 
-        FinishOption();
+  FinishOption();
+}
 
+static void ListProductsOption(List<Dictionary<string, object>> products)
+{
+  ListProducts(products);
+
+  string productHeaderLineSeparator = new('-', maxLineWidth);
+  double generalTotal = products.Sum(product => (int)product["stock"] * (double)product["price"]);
+  Console.WriteLine(productHeaderLineSeparator);
+  Console.WriteLine($"Total: {generalTotal:C2}");
+  Console.WriteLine(productHeaderLineSeparator);
+
+  FinishOption();
+}
+
+static void ModifyProductOption(List<Dictionary<string, object>> products)
+{
+  ListProducts(products);
+  string productHeaderLineSeparator = new('-', maxLineWidth);
+  Console.WriteLine(productHeaderLineSeparator);
+  if (products.Count.Equals(0))
+  {
+    FinishOption();
+    return;
+  }
+
+  int productNumberToModify = GetIntInput("Ingrese el número de producto que desea modificar (0 para salir): ");
+
+  if (productNumberToModify == 0)
+  {
+    FinishOption();
+    return;
+  }
+  else if (productNumberToModify < 0 || productNumberToModify > products.Count)
+  {
+    Console.WriteLine("Por favor, ingrese una opcion valida");
+    FinishOption();
+    return;
+  }
+
+  int productIndex = productNumberToModify - 1;
+  var product = products[productIndex];
+  Console.WriteLine($"Modificando el producto #{productNumberToModify}: '{product["name"]}'...");
+
+  string newNameInput = GetStringInput("Ingrese el nuevo nombre del producto (Presiona ENTER para dejarlo igual): ");
+  double newPriceInput = GetDoubleInput("Ingrese valor por unidad: ");
+  int newStockInput = GetIntInput("Ingrese cantidad de unidades: ");
+
+  string newName = string.IsNullOrEmpty(newNameInput) ? (string)product["name"] : newNameInput;
+
+  product["name"] = newName;
+  product["price"] = newPriceInput;
+  product["stock"] = newStockInput;
+
+  Console.WriteLine("");
+  Console.WriteLine("¡Producto modificado correctamente!");
+  Console.WriteLine("");
+  FinishOption();
+}
+
+static void RemoveProductOption(List<Dictionary<string, object>> products)
+{
+  ListProducts(products);
+  string productHeaderLineSeparator = new('-', maxLineWidth);
+  Console.WriteLine(productHeaderLineSeparator);
+  if (products.Count.Equals(0))
+  {
+    FinishOption();
+    return;
+  }
+
+  int productNumberToDelete = GetIntInput("Ingrese el número de producto que desea eliminar (0 para salir): ");
+  if (productNumberToDelete == 0)
+  {
+    FinishOption();
+    return;
+  }
+  else if (productNumberToDelete < 0 || productNumberToDelete > products.Count)
+  {
+    Console.WriteLine("Por favor, ingrese una opcion valida");
+    FinishOption();
+    return;
+  }
+
+  int productIndexToDelete = productNumberToDelete - 1;
+  products.RemoveAt(productIndexToDelete);
+  Console.WriteLine("");
+  Console.WriteLine("¡Producto eliminado correctamente!");
+  Console.WriteLine("");
+  FinishOption();
+}
+
+static void Menu(ref List<Dictionary<string, object>> products)
+{
+  bool isMenuOpened = true;
+  while (isMenuOpened)
+  {
+
+    Console.WriteLine(GenerateHeader("INVENTARIO"));
+    Console.WriteLine(
+@$"1. Agregar producto
+2. Modificar producto
+3. Eliminar producto
+4. Listar productos
+5. Salir
+{new string('-', maxLineWidth)}"
+    );
+
+    double option = GetIntInput("INGRESE OPCIÓN: ");
+    Console.Clear();
+
+    switch (option)
+    {
+      case 1:
+        AddProductOption(products);
         break;
       case 2:
-        ListProducts(products);
-        Console.WriteLine(productHeaderLineSeparator);
-        if (products.Count.Equals(0))
-        {
-          FinishOption();
-          break;
-        }
-
-        int productNumberToModify = GetIntInput("Ingrese el número de producto que desea modificar (0 para salir): ");
-
-        if (productNumberToModify == 0)
-        {
-          FinishOption();
-          break;
-        }
-        else if (productNumberToModify < 0 || productNumberToModify > products.Count)
-        {
-          Console.WriteLine("Por favor, ingrese una opcion valida");
-          FinishOption();
-          break;
-        }
-
-        int productIndex = productNumberToModify - 1;
-        var product = products[productIndex];
-        Console.WriteLine($"Modificando el producto #{productNumberToModify}: '{product["name"]}'...");
-
-        string newNameInput = GetStringInput("Ingrese el nuevo nombre del producto (Presiona ENTER para dejarlo igual): ");
-        double newPriceInput = GetDoubleInput("Ingrese valor por unidad: ");
-        int newStockInput = GetIntInput("Ingrese cantidad de unidades: ");
-
-        string newName = string.IsNullOrEmpty(newNameInput) ? (string)product["name"] : newNameInput;
-
-        product["name"] = newName;
-        product["price"] = newPriceInput;
-        product["stock"] = newStockInput;
-
-        Console.WriteLine("");
-        Console.WriteLine("¡Producto modificado correctamente!");
-        Console.WriteLine("");
-        FinishOption();
+        ModifyProductOption(products);
         break;
       case 3:
-        ListProducts(products);
-        Console.WriteLine(productHeaderLineSeparator);
-        if (products.Count.Equals(0))
-        {
-          FinishOption();
-          break;
-        }
-
-        int productNumberToDelete = GetIntInput("Ingrese el número de producto que desea eliminar (0 para salir): ");
-        if (productNumberToDelete == 0)
-        {
-          FinishOption();
-          break;
-        }
-        else if (productNumberToDelete < 0 || productNumberToDelete > products.Count)
-        {
-          Console.WriteLine("Por favor, ingrese una opcion valida");
-          FinishOption();
-          break;
-        }
-
-        int productIndexToDelete = productNumberToDelete - 1;
-        products.RemoveAt(productIndexToDelete);
-        Console.WriteLine("");
-        Console.WriteLine("¡Producto eliminado correctamente!");
-        Console.WriteLine("");
-        FinishOption();
+        RemoveProductOption(products);
         break;
       case 4:
-        ListProducts(products);
-
-        double generalTotal = products.Sum(product => (int)product["stock"] * (double)product["price"]);
-        Console.WriteLine(productHeaderLineSeparator);
-        Console.WriteLine($"Total: {generalTotal:C2}");
-        Console.WriteLine(productHeaderLineSeparator);
-
-        FinishOption();
+        ListProductsOption(products);
         break;
       case 5:
         isMenuOpened = false;
