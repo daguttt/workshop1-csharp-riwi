@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Headers;
 
-const int maxLineWidth = 90;
+const int maxLineWidth = 100;
 
 List<Dictionary<string, object>> products = [
   new Dictionary<string, object> {
@@ -194,6 +194,26 @@ static void Menu(ref List<Dictionary<string, object>> products)
           FinishOption();
           break;
         }
+
+        int productNumberToDelete = GetIntInput("Ingrese el número de producto que desea eliminar (0 para salir): ");
+        if (productNumberToDelete == 0)
+        {
+          FinishOption();
+          break;
+        }
+        else if (productNumberToDelete < 0 || productNumberToDelete > products.Count)
+        {
+          Console.WriteLine("Por favor, ingrese una opcion valida");
+          FinishOption();
+          break;
+        }
+
+        int productIndexToDelete = productNumberToDelete - 1;
+        products.RemoveAt(productIndexToDelete);
+        Console.WriteLine("");
+        Console.WriteLine("¡Producto eliminado correctamente!");
+        Console.WriteLine("");
+        FinishOption();
         break;
       case 4:
         ListProducts(products);
