@@ -97,6 +97,7 @@ usando un ciclo while.
 7. Escribe un programa que solicite al usuario un número entero positivo e imprima la
 secuencia de Fibonacci hasta ese número usando un ciclo for.
 */
+
 try
 {
   Console.Write("Ingresa un número entero positivo: ");
