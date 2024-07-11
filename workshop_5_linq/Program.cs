@@ -3,8 +3,9 @@
 public class Program
 {
 
-  public static void Main(string[] args)
+  public static void Main()
   {
+
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     // Filtrar y mostrar solo los números pares de la lista numbers.
@@ -100,6 +101,8 @@ public class Program
     Console.WriteLine();
 
     // -*********************-
+
+
     List<int> data = [2, 5, 1, 6, 3, 8, 4, 7, 9];
     List<int> moreData = [10, 12, 15, 11, 14, 13];
 
@@ -109,14 +112,49 @@ public class Program
     Console.WriteLine();
     Console.WriteLine();
 
+    // Combinar y ordenar las listas data y moreData de forma ascendente
+    var newData = data.Concat(moreData).OrderBy(num => num);
+    Console.WriteLine($"Listas combinadas y ordenadas de forma ascendente: {string.Join(", ", newData)}");
+    Console.WriteLine();
 
+    // Calcular la suma de todos los números pares en la lista data.
+    var sumOfEvenNumbers = data.Where(num => num % 2 == 0).Sum();
+    Console.WriteLine($"Suma de los números pares de data: {sumOfEvenNumbers}");
+    Console.WriteLine();
+
+    // Encontrar el número más grande en la lista data.
+    var maxNumberInData = data.Max();
+    Console.WriteLine($"Número más grande en la lista data: {maxNumberInData}");
+    Console.WriteLine();
+
+    // Unir las listas data y moreData, eliminando los elementos duplicados.
+    var unionList = data.Union(moreData);
+    Console.WriteLine($"Unión entre data y moreData: {string.Join(", ", unionList)}");
+    Console.WriteLine();
+
+    // Calcular el promedio de la lista moreData y seleccionar los números en data que son
+    // mayores que ese promedio.
+    var moreDataAverage = moreData.Average();
+    Console.WriteLine($"moreData average: {moreDataAverage}");
+    var numbersGreaterThanMoreDataAverage = data.Where(num => num > moreDataAverage);
+    var message = numbersGreaterThanMoreDataAverage.Any() ? string.Join(", ", numbersGreaterThanMoreDataAverage) : "No existen números en data mayores al promedio de moreData";
+    Console.WriteLine($"Números mayores al promedio de moreData: {message}");
+    Console.WriteLine();
+
+    // Contar cuántos números en la lista moreData son números primos(te recomiendo crear
+    // una función independiente que valide si el número es primo o no lo es, luego esa funciona
+    // pasala al método LINQ adecuado)
     var primeNumbersInMoreData = moreData.Where(CheckPrimeNumber);
-    // var primeNumbersInMoreData =  moreData.Where((n) => checkPrimeNumber(n));
+    Console.WriteLine($"Números primos en moreData: {string.Join(", ", primeNumbersInMoreData)}");
+    Console.WriteLine();
 
   }
   static bool CheckPrimeNumber(int number)
   {
-
+    for (int i = 2; i < Math.Sqrt(number); i++)
+    {
+      if (number % i == 0) return false;
+    }
     return true;
   }
 
