@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "workshop_inventory_system",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "workshop_4_collections", "workshop_4_collections\workshop_4_collections.csproj", "{8FFF60D5-4726-4C3E-8F8C-56B1C02A3F1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "workshop_5_linq", "workshop_5_linq\workshop_5_linq.csproj", "{960BC9C5-8205-44AF-89CF-19723D379ABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{8FFF60D5-4726-4C3E-8F8C-56B1C02A3F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FFF60D5-4726-4C3E-8F8C-56B1C02A3F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FFF60D5-4726-4C3E-8F8C-56B1C02A3F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960BC9C5-8205-44AF-89CF-19723D379ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960BC9C5-8205-44AF-89CF-19723D379ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960BC9C5-8205-44AF-89CF-19723D379ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960BC9C5-8205-44AF-89CF-19723D379ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
